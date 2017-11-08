@@ -18,6 +18,7 @@
 		@foreach ($prueba->tags as $tag)
 			<a href="#" class="card-link">{{ $tag->name}}</a>
 		@endforeach
+
 	</div>
 </div>
 

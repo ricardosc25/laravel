@@ -3,12 +3,28 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
- use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Article extends Model
 {
+
+    use HasSlug;
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+
+    public function scopeFindBySlug($query, $slug){
+        return $query->where('slug', $slug)->get();
+    }
+
     protected $table = "articles";
-    protected $fillable = ['title','content','user_id','category_id'];
+    protected $fillable = ['title','content','user_id','category_id','slug'];
 
     public function category(){
     return $this->belongsTo('App\Category');
