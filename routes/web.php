@@ -26,4 +26,21 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'admin'], function() {
     Route::resource('users','UsersController');
+    route::get('admin.users/{id}', [
+    	'uses' => 'UsersController@destroy',
+		'as' => 'admin.users.destroy'
+    ]);
+
+    route::put('admin.users/{id}', [
+    	'uses' => 'UsersController@update',
+		'as' => 'admin.users.update'
+    ]);
+
+    route::resource('categories','CategoriesController');
+
+    route::DELETE('admin.categories/{id}', [
+        'uses' => 'CategoriesController@destroy',
+        'as' => 'admin.categories.destroy'
+    ]);
+    	
 });

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use laracasts\Flash\Flash;
-use App\Http\Requests\UserRequest;
+use App\Http\Controllers\Controller;
+use App\Category;
 
-class UsersController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','ASC')->paginate(5);
-        return view('admin.users.listaUsuarios', ['users' => $users]);
+        $categr = Category::orderBy('id','ASC')->paginate(5);
+        return view('admin.categories.listaCategorias', ['categList' => $categr]);
     }
 
     /**
@@ -27,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -36,13 +35,13 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        $user = new User($request->all());
-        $user->save();
-        flash('Se ha creado el usuario '.$user->name.' de forma exitosa')->success();
+        $catg = new Category($request->all());
+        $catg->save();
 
-        return redirect()->route('users.index');
+        flash('Se ha creado una nueva categoría de forma exitosa')->success();
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -64,8 +63,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('admin.users.edit')->with('user', $user); 
+        $categ = Category::find($id);
+        return view('admin.categories.edit')->with('categ', $categ);
     }
 
     /**
@@ -77,13 +76,12 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $user = User::find($id);
-        $user->fill($request->all()); //Obtiene todos los datos que vienen del formulario.
+        $categ = Category::find($id);
+        $categ->fill($request->all()); //Obtiene todos los datos que vienen del formulario.
         // $user->name = $request->name; Esta es otra manera de obtener los datos enviados desde el formulario Seteandolos.
-        $user->save();
-        flash('La información del usuario '.$user->name.' se actualizó de forma exitosa')->success();
-        return redirect()->route('users.index');
+        $categ->save();
+        flash('Actualización exitosa')->success();
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -94,11 +92,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::find($id);
-        $user->delete();
-        flash('Se ha eliminado el usuario '.$user->name.' de forma exitosa')->error();
+        dd($id);
+        // $categ = Category::find($id);
+        // $categ->delete();
 
-        return redirect()->route('users.index');
-        
+        // flash('Se ha eliminado la categoria de forma exitosa')->error();
+        // return redirect()->route('categories.index');
     }
 }

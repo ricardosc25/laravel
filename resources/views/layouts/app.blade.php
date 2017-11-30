@@ -10,10 +10,12 @@
     @include('shared.nav')
 
     @section('sidebar')
-        Streaming
+        <h5>SIDEBAR</h5>
     @show
 
     <div class="container">
+    	@include('flash::message')
+        @include('shared.errors_flash')
         @yield('content')
     </div>
 </body>
