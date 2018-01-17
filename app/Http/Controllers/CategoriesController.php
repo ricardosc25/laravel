@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use App\Http\Requests\CategoriesRequest;
 
 class CategoriesController extends Controller
 {
@@ -15,7 +16,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categr = Category::orderBy('id','ASC')->paginate(5);
+        $categr = Category::orderBy('id','ASC')->paginate(20);
         return view('admin.categories.listaCategorias', ['categList' => $categr]);
     }
 
@@ -35,7 +36,7 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoriesRequest $request)
     {
         $catg = new Category($request->all());
         $catg->save();
@@ -92,11 +93,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
-        // $categ = Category::find($id);
-        // $categ->delete();
+        $categ = Category::find($id);
+        $categ->delete();
 
-        // flash('Se ha eliminado la categoria de forma exitosa')->error();
-        // return redirect()->route('categories.index');
+        flash('Se ha eliminado la categoria de forma exitosa')->error();
+        return redirect()->route('categories.index');
     }
 }

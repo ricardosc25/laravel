@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('article/{id}', [
-// 	 'uses' => 'TestController@article',
-// 	 'as' => 'listArticles'
-// ]);
+Route::get('article/{id}', [
+	 'uses' => 'TestController@article',
+	 'as' => 'listArticles'
+]);
 
 // Route::get('blade', function () {
 //     return view('child');
@@ -31,14 +31,8 @@ Route::group(['prefix' => 'admin'], function() {
 		'as' => 'admin.users.destroy'
     ]);
 
-    route::put('admin.users/{id}', [
-    	'uses' => 'UsersController@update',
-		'as' => 'admin.users.update'
-    ]);
-
     route::resource('categories','CategoriesController');
-
-    route::DELETE('admin.categories/{id}', [
+    route::get('admin.categories/{id}', [
         'uses' => 'CategoriesController@destroy',
         'as' => 'admin.categories.destroy'
     ]);
