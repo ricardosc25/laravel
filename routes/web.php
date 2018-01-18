@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('article/{id}', [
 	 'uses' => 'TestController@article',
 	 'as' => 'listArticles'
@@ -24,7 +20,7 @@ Route::get('article/{id}', [
 //     return view('child');
 // });
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('users','UsersController');
     route::get('admin.users/{id}', [
     	'uses' => 'UsersController@destroy',
@@ -38,3 +34,7 @@ Route::group(['prefix' => 'admin'], function() {
     ]);
     	
 });
+
+Auth::routes();
+Route::get('/', 'CategoriesController@index');
+

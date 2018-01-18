@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Laravel 5'),
 
     /*
     |--------------------------------------------------------------------------
@@ -184,6 +184,9 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
 
+         /*Barra de DEBUG*/
+        'Barryvdh\Debugbar\ServiceProvider',
+
     ],
 
     /*
@@ -238,6 +241,9 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+
+        /*Barra de DEBUG*/
+        'Debugbar' => 'Barryvdh\Debugbar\Facade',
 
     ],
 
