@@ -23,10 +23,17 @@
                 <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
                 <li><a href="{{ route('users.index') }}">Usuarios</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorias<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="{{ route('categories.index') }}">Ver categorias</a></li>
-                    <li><a href="{{ route('categories.create') }}">Nueva categoría</a></li>
+                    <li><a href="{{ route('categories.index') }}">Ver categorías</a></li>
+                    <li><a href="{{ route('categories.create') }}">crear categoría</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ route('tags.index') }}">Ver tags</a></li>
+                    <li><a href="{{ route('tags.create') }}">Crear tag</a></li>
                 </ul>
             </li>
         </ul>
