@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Tag;
+use App\Article;
+use App\Image;
+
 class ArticlesController extends Controller
 {
     /**
@@ -15,7 +18,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.articles.index');
     }
 
     /**
@@ -40,7 +43,29 @@ class ArticlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $article = new Article($request->all());
+        $article->user_id = \Auth::user()->id;
+        $article->save();
+
+        $article->tags()->sync($request->tags);
+        // sync: rellena la tabla pibote article_tag
+
+        if ($request->file('image')) 
+        {
+            $file = $request->file('image');
+            $name = 'laravel_' . time() . '.' . $file->getClientOriginalExtension();
+            $path = public_path() . '\Image\Articles/'; /*ruta para almacenar la imagen*/
+            $file->move($path, $name); /*Movemos la imagen a la ruta path y como segundo parametro le pasamos el nombre que tendrá la imagen.*/
+
+            $image = new Image();
+            $image->name = $name;
+            $image->article()->associate($article);
+            $image->save();
+        }
+
+        flash('Se ha creado el articulo de forma exitosa')->success();
+        return redirect()->route('articles.index');
+        
     }
 
     /**

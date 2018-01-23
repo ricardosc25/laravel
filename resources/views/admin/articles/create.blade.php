@@ -6,14 +6,15 @@
 <div class="row">
 	<div class="col-md-4">
 		{!! Form::open(['route' => 'articles.store', 'method' => 'POST', 'files' => 'TRUE']) !!}
-	<div class="form-group">
-		{!! Form::label('title','Titulo') !!}
-		{!! Form::text('title', null, ['class' => 'form-control', 'required', 'placeholder' => 'Titulo de la nota']) !!}
-	</div>
 
 	<div class="form-group">
 		{!! Form::label('category_id','Categoria') !!}
-		{!! Form::select('category_id', $categories, null, ['class' => 'form-control', 'required', 'placeholder' => 'Seleccione una categoria']) !!}
+		{!! Form::select('category_id', $categories, null, ['class' => 'form-control select_category', 'required', 'placeholder' => 'Seleccione una categoria']) !!}
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('title','Titulo') !!}
+		{!! Form::text('title', null, ['class' => 'form-control', 'required', 'placeholder' => 'Titulo de la nota']) !!}
 	</div>
 
 	<div class="form-group">
@@ -22,8 +23,13 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::label('tag_id','Tag') !!}
-		{!! Form::select('tag_id', $tags, null, ['class' => 'form-control', 'required', 'placeholder' => 'Asignar tag']) !!}
+		{!! Form::label('image','Imagen') !!}
+		{!! Form::file('image', null, ['class' => 'form-control', 'required']) !!}
+	</div>	
+
+	<div class="form-group">
+		{!! Form::label('tags','Tag') !!}
+		{!! Form::select('tags[]', $tags, null, ['class' => 'form-control', 'required', 'multiple']) !!}
 	</div>
 
 	<div class="form-group">
@@ -35,4 +41,13 @@
 
 </div>
 
+@endsection
+
+@section('js')
+<script>
+	$(".select_category").chosen({
+
+	});	
+</script>
+	
 @endsection
