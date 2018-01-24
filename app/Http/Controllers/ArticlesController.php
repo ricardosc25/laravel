@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticlesRequest;
 use App\Category;
 use App\Tag;
 use App\Article;
@@ -41,7 +42,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticlesRequest $request)
     {
         $article = new Article($request->all());
         $article->user_id = \Auth::user()->id;
