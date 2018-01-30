@@ -11,7 +11,7 @@
 
 <div class="card" style="width: 20rem;">
 	<div class="card-body">
-		<h4 class="card-title">{{ $prueba->title }}</h4>
+		<h4 class="card-title">{{ $art->title }}</h4>
 		<h6 class="card-subtitle mb-2 text-muted">{{ $prueba->category->name }} : {{ $prueba->user->name }}</h6>
 		<p class="card-text">{{ $prueba->content }}</p>
 		

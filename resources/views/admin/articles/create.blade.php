@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-lg-6">
-		{!! Form::open(['route' => 'articles.store', 'method' => 'POST', 'files' => 'TRUE', 'class' => 'dropzone']) !!}
+		{!! Form::open(['route' => 'articles.store', 'method' => 'POST', 'files' => 'TRUE']) !!}
 
 			<div class="form-group">
 				{!! Form::label('category_id','Categoria') !!}
@@ -24,7 +24,7 @@
 
 		    <div class="form-group">
 				{!! Form::label('image','Imagen') !!}
-				{!! Form::file('image[]', null, ['class' => 'form-control', 'multiple']) !!}
+				{!! Form::file('image', null, ['class' => 'form-control', 'multiple']) !!}
 			</div>
 
 			<div class="form-group">
