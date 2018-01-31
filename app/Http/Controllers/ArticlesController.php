@@ -113,4 +113,10 @@ class ArticlesController extends Controller
     {
         //
     }
+
+    public function recorteImagen()
+    {
+        //
+    }
+
 }
