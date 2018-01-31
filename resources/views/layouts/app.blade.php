@@ -37,7 +37,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{{ asset('plugins/chosen_v1.8.3/chosen.jquery.js') }}"></script>
     <script src="{{ asset('plugins/trumbowyg/trumbowyg.js') }}"></script>
+<<<<<<< HEAD
     <script src="{{ asset('plugins/imgareaselect/js/jquery.imgareaselect.js') }}"></script>
     @yield('js')
+=======
+<<<<<<< HEAD
+=======
+
+    <script src="{{ asset('plugins/jQueryFileUpload/js/vendor/jquery.ui.widget.js') }}"></script>
+    <!-- El complemento Load Image se incluye para las imágenes de vista previa y la funcionalidad de cambio de tamaño de la imagen -->
+    <script src="{{ asset('plugins/jQueryFileUpload/js/load-image.all.min.js') }}"></script>
+    <!-- El complemento Canvas to Blob se incluye para la funcionalidad de cambio de tamaño de la imagen -->
+    <script src="{{ asset('plugins/jQueryFileUpload/js/canvas-to-blob.min.js') }}"></script>
+    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.fileupload.js') }}"></script>
+    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.fileupload-process.js') }}"></script>
+    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.fileupload-image.js') }}"></script>
+    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.fileupload-validate.js') }}"></script>
+
+>>>>>>> ce0aac56df40189af74d7dbdac4a83334227ddd0
+    @yield('js');
+>>>>>>> origin/test
 </body>
 </html>

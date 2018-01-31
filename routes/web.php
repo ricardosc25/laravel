@@ -16,6 +16,8 @@ Route::get('article/{id}', [
 	 'as' => 'listArticles'
 ]);
 
+route::get('/','ArticlesController@index');
+
 // Route::get('blade', function () {
 //     return view('child');
 // });
@@ -43,5 +45,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 });
 
 Auth::routes();
-Route::get('/', 'CategoriesController@index');
 
