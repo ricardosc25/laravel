@@ -16,6 +16,8 @@
 	</div>
 </div>
 	@endforeach
+@else
+<p>NO</p>	
 @endif
 
 {{ $article->render() }}

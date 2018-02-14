@@ -12,7 +12,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name') }}
+                Home
             </a>
         </div>
 
@@ -20,7 +20,7 @@
             @if(Auth::user())
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="{{ route('admin.articles.articulos') }}">Articulos <span class="sr-only">(current)</span></a></li>
                 <li><a href="{{ route('users.index') }}">Usuarios</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías<span class="caret"></span></a>

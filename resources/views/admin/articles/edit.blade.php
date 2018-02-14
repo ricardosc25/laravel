@@ -1,11 +1,9 @@
 @extends('layouts.app')
-@section('title', 'Crear Artículo')
+@section('title', 'Editar categoria')
 @section('content')
-<h1>Crear Artículo</h1>
-
 <div class="row">
 	<div class="col-lg-6">
-		{!! Form::open(['route' => 'articles.store', 'method' => 'POST', 'files' => 'TRUE']) !!}
+		{!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'PUT']) !!}
 
 			<div class="form-group">
 				{!! Form::label('category_id','Categoria') !!}
@@ -33,7 +31,7 @@
 			</div>
 
 			<div class="form-group">
-				{!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}
+				{!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
 			</div>
 
 		{!! Form::close() !!}

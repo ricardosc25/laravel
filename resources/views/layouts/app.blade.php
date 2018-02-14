@@ -15,16 +15,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/chosen_v1.8.3/chosen.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/trumbowyg/ui/trumbowyg.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jQueryFileUpload/css/jquery.fileupload.css') }}">
 
 </head>
 <body>   
         @include('shared.nav')
 
         <div class="container">
-            @yield('content')
             @include('flash::message')
             @include('shared.errors_flash')
+            @yield('content')
+            
         </div>
 
     <!-- Scripts -->
@@ -37,21 +37,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="{{ asset('plugins/chosen_v1.8.3/chosen.jquery.js') }}"></script>
     <script src="{{ asset('plugins/trumbowyg/trumbowyg.js') }}"></script>
-<<<<<<< HEAD
-=======
-
-    <script src="{{ asset('plugins/jQueryFileUpload/js/vendor/jquery.ui.widget.js') }}"></script>
-    <!-- El complemento Load Image se incluye para las imágenes de vista previa y la funcionalidad de cambio de tamaño de la imagen -->
-    <script src="{{ asset('plugins/jQueryFileUpload/js/load-image.all.min.js') }}"></script>
-    <!-- El complemento Canvas to Blob se incluye para la funcionalidad de cambio de tamaño de la imagen -->
-    <script src="{{ asset('plugins/jQueryFileUpload/js/canvas-to-blob.min.js') }}"></script>
-    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.iframe-transport.js') }}"></script>
-    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.fileupload.js') }}"></script>
-    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.fileupload-process.js') }}"></script>
-    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.fileupload-image.js') }}"></script>
-    <script src="{{ asset('plugins/jQueryFileUpload/js/jquery.fileupload-validate.js') }}"></script>
-
->>>>>>> ce0aac56df40189af74d7dbdac4a83334227ddd0
-    @yield('js');
+    @yield('js')
 </body>
 </html>

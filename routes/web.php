@@ -11,37 +11,44 @@
 |
 */
 
+Route::get('/','ArticlesController@index');
+
 Route::get('article/{id}', [
 	 'uses' => 'TestController@article',
 	 'as' => 'listArticles'
 ]);
 
-route::get('/','ArticlesController@index');
-
-// Route::get('blade', function () {
-//     return view('child');
-// });
-
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('users','UsersController');
-    route::get('admin.users/{id}', [
+    Route::get('admin.users/{id}', [
     	'uses' => 'UsersController@destroy',
 		'as' => 'admin.users.destroy'
     ]);
 
-    route::resource('categories','CategoriesController');
-    route::get('admin.categories/{id}', [
+    Route::resource('categories','CategoriesController');
+    Route::get('admin.categories/{id}', [
         'uses' => 'CategoriesController@destroy',
         'as' => 'admin.categories.destroy'
     ]);
 
-    route::resource('tags','TagsController');
-    route::get('admin.tags/{id}', [
+    Route::resource('tags','TagsController');
+    Route::get('admin.tags/{id}', [
         'uses' => 'TagsController@destroy',
         'as' => 'admin.tags.destroy'
     ]);
 
-     route::resource('articles','ArticlesController');
+    Route::get('articles/articulos',[
+        'as' => 'admin.articles.articulos',
+        'uses' => 'ArticlesController@articulos'
+        ]);
+    
+    Route::resource('articles','ArticlesController');
+    Route::get('admin.articles/{id}', [
+        'uses' => 'ArticlesController@destroy',
+        'as' => 'admin.articles.destroy'
+    ]);
+    
+   
 });
 
 Auth::routes();

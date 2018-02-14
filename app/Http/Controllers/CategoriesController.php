@@ -79,7 +79,6 @@ class CategoriesController extends Controller
     {
         $categ = Category::find($id);
         $categ->fill($request->all()); //Obtiene todos los datos que vienen del formulario.
-        // $user->name = $request->name; Esta es otra manera de obtener los datos enviados desde el formulario Seteandolos.
         $categ->save();
         flash('Actualización exitosa')->success();
         return redirect()->route('categories.index');
