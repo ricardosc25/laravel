@@ -20,8 +20,14 @@ class ArticlesController extends Controller
      */
     public function index()
     {
+        $image = Image::all();
+        $image->each(function($image){
+            $image->article;
+        });
         $article = Article::orderBy('id', 'DESC')->paginate(5);
-        return view('admin.articles.index')->with('article', $article);
+        return view('admin.articles.index')
+              ->with('article', $article)
+              ->with('image', $image);
     }
 
 
