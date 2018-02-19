@@ -11,7 +11,13 @@
 |
 */
 
-Route::get('/','ArticlesController@index');
+// RUTAS PARA EL FRONTEND
+Route::get('/', [
+    'uses' => 'FrontController@index',
+     'as' => 'front.index'
+]);
+
+
 
 Route::get('article/{id}', [
 	 'uses' => 'TestController@article',

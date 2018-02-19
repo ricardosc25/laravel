@@ -6,7 +6,6 @@
 	
 		<div class="card" style="width: 20rem;">
 			<div class="card-body">
-					<img src="{{ asset('Image/Articles/'.$image->name) }}" class="img-responsive">
 				<h4 class="card-title">{{ $art->title }}</h4>
 				<h6 class="card-subtitle mb-2 text-muted">{{ $art->category->name }} : {{ $art->user->name }}</h6>
 				<p class="card-text">{{ $art->content }}</p>

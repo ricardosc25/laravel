@@ -42,8 +42,8 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('article_tag');
-        Schema::drop('tags');
+        Schema::drop('article_tag')->onDelete('cascade');
+        Schema::drop('tags')->onDelete('cascade');
         
     }
 }
