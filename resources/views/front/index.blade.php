@@ -14,9 +14,9 @@
 						</a>
 						<h3 class="text-center"> {{ $article->title }} </h3>
 						<hr>
-						<i class="far fa-folder"></i> <a href="">Category</a>
+						<i class="far fa-folder"></i> <a href="">{{ $article->category->name }}</a>
 						<div class="pull-right">
-							<i class="far fa-clock"></i>Hace 3 minutos
+							<i class="far fa-clock"></i> {{ $article->created_at->diffForHumans() }}
 							<i class="far fa-address-card"></i>
 						</div>
 		  			</div>
@@ -24,6 +24,12 @@
 			</div>
 		@endforeach
 	</div>
+</div>
+
+{!! $articles->render() !!}
+
+<div class="col-md-4">
+	@include('front.partials.aside')
 </div>
 
 @endsection()

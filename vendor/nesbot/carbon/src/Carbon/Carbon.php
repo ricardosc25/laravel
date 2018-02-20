@@ -1094,7 +1094,7 @@ class Carbon extends DateTime
         if (static::$translator === null) {
             static::$translator = new Translator('en');
             static::$translator->addLoader('array', new ArrayLoader());
-            static::setLocale('en');
+            static::setLocale('es'); //Localización, se colocó en español.
         }
 
         return static::$translator;
