@@ -58,6 +58,7 @@
 
 	$('.textarea-content').trumbowyg();
 
+
 </script>
 
 @endsection

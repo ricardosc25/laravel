@@ -27,6 +27,11 @@ Route::get('tags/{name}',[
     'as'   => 'front.search.tag' 
 ]);
 
+Route::get('articles/{slug}',[
+    'uses' => 'FrontController@viewArticle',
+    'as'   => 'front.view.article' 
+]);
+
 
 Route::get('article/{id}', [
 	 'uses' => 'TestController@article',

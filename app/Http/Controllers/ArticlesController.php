@@ -54,6 +54,7 @@ class ArticlesController extends Controller
     public function store(ArticlesRequest $request)
     {
         $article = new Article($request->all());
+        dd($article);
         $article->user_id = \Auth::user()->id;
         $article->save();
 

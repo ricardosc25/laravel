@@ -7,12 +7,12 @@
 			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<a href="" class="thumbnail">
+						<a href="{{ route('front.view.article', $article->slug) }}" class="thumbnail">
 							@foreach($article->images as $image)
 								<img style="width: 300px; height: 180px;" class="img-responsive img-article" src="{{ asset('Image/Articles/' . $image->name) }}" alt="...."> 
 							@endforeach
 						</a>
-						<h3 class="text-center"> {{ $article->title }} </h3>
+						<a href="{{ route('front.view.article', $article->slug) }}"><h3 class="text-center"> {{ $article->title }} </h3></a>
 						<hr>
 						<i class="far fa-folder"></i> <a href="">{{ $article->category->name }}</a>
 						<div class="pull-right">
