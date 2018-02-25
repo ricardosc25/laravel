@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\User;
 
 class TestController extends Controller
 {
@@ -16,5 +17,10 @@ class TestController extends Controller
 
     		return view('child', ['prueba' => $art]);
 
+    }
+
+    public function isAdmin(){
+        $user = User::where('type','admin')->get();        
+        return $user;
     }
 }

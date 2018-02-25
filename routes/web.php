@@ -11,7 +11,8 @@
 |
 */
 
-// RUTAS PARA EL FRONTEND
+
+//---------------------RUTAS PARA EL FRONTEND---------------------------//
 Route::get('/', [
     'uses' => 'FrontController@index',
      'as' => 'front.index'
@@ -32,18 +33,18 @@ Route::get('articles/{slug}',[
     'as'   => 'front.view.article' 
 ]);
 
-
-Route::get('article/{id}', [
-	 'uses' => 'TestController@article',
-	 'as' => 'listArticles'
-]);
+//--------------------FIN RUTAS PARA EL FRONTEND---------------------------//
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::resource('users','UsersController');
-    Route::get('admin.users/{id}', [
-    	'uses' => 'UsersController@destroy',
-		'as' => 'admin.users.destroy'
-    ]);
+    
+    Route::group(['middleware' => 'admin'], function(){
+        Route::resource('users','UsersController');
+        Route::get('admin.users/{id}', [
+        'uses' => 'UsersController@destroy',
+        'as' => 'admin.users.destroy'
+        ]);    
+    });
+    
 
     Route::resource('categories','CategoriesController');
     Route::get('admin.categories/{id}', [
@@ -70,6 +71,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     
    
 });
+
+//----------------------PRUEBAS CON MIDDLEWARE------------------------------//
+
+Route::get('/test', [
+        'uses' => 'TestController@isAdmin',
+        'as' => 'test.cntrol'
+    ]);
+
 
 Auth::routes();
 
