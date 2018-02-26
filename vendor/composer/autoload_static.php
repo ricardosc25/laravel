@@ -344,6 +344,7 @@ class ComposerStaticInita0ba222e4191b5a41642f05ebe6da5b0
     );
 
     public static $classMap = array (
+        'AddAvatarToUsersTable' => __DIR__ . '/../..' . '/database/migrations/2018_02_26_221054_add_avatar_to_users_table.php',
         'AddColumSlugToArticles' => __DIR__ . '/../..' . '/database/migrations/2017_10_24_022432_add_colum_slug_to_articles.php',
         'App\\Article' => __DIR__ . '/../..' . '/app/Article.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
@@ -362,6 +363,7 @@ class ComposerStaticInita0ba222e4191b5a41642f05ebe6da5b0
         'App\\Http\\Controllers\\TestController' => __DIR__ . '/../..' . '/app/Http/Controllers/TestController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\Admin' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
@@ -369,10 +371,12 @@ class ComposerStaticInita0ba222e4191b5a41642f05ebe6da5b0
         'App\\Http\\Requests\\ArticlesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ArticlesRequest.php',
         'App\\Http\\Requests\\CategoriesRequest' => __DIR__ . '/../..' . '/app/Http/Requests/CategoriesRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
+        'App\\Http\\ViewComposers\\AsideComposer' => __DIR__ . '/../..' . '/app/Http/ViewComposers/AsideComposer.php',
         'App\\Image' => __DIR__ . '/../..' . '/app/Image.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
+        'App\\Providers\\ComposerServiceProvider' => __DIR__ . '/../..' . '/app/Providers/ComposerServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Tag' => __DIR__ . '/../..' . '/app/Tag.php',
