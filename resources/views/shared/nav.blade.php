@@ -49,22 +49,24 @@
             <li><a href="{{ route('register') }}">Register</a></li>
             @else
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style=" position: relative; padding-left: 50px;">
+                    <img src="{{ asset('Image/Profile/Avatars/' . Auth::user()->avatar) }}" style="width: 32px; height: 32px; top:10px; left:10px; position:absolute; border-radius:50%;">
                     {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();">
-                        Logout
+                        <a href="{{ route('front.profile') }}"><i class="fas fa-user"></i> Profile</a>
+                    </li>
+                    <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"> Logout</i>
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>
-                </li>
+                    </li>
             </ul>
         </li>
         @endguest

@@ -185,6 +185,7 @@ return [
 
         Collective\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
          /*Barra de DEBUG*/
         'Barryvdh\Debugbar\ServiceProvider',
@@ -243,6 +244,7 @@ return [
          */
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'Image' => Intervention\Image\Facades\Image::class,
 
         /*Barra de DEBUG*/
         'Debugbar' => 'Barryvdh\Debugbar\Facade',

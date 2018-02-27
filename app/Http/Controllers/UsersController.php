@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use laracasts\Flash\Flash;
 use App\Http\Requests\UserRequest;
+use Auth;
+use Image;
 
 class UsersController extends Controller
 {
@@ -100,5 +102,23 @@ class UsersController extends Controller
 
         return redirect()->route('users.index');
         
+    }
+
+    public function profile(){
+        return view('front.profile',['user' => Auth::user()]);
+    }
+
+    public function update_avatar(Request $request){
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save(public_path('/Image/Profile/Avatars/' . $filename));
+
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save();
+
+            return view('front.profile',['user' => Auth::user()]);
+        }
     }
 }

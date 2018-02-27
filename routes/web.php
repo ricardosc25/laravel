@@ -33,6 +33,16 @@ Route::get('articles/{slug}',[
     'as'   => 'front.view.article' 
 ]);
 
+Route::get('profile',[
+    'uses' => 'UsersController@profile',
+    'as'   => 'front.profile'
+]);
+
+Route::post('profile',[
+    'uses' => 'UsersController@update_avatar',
+    'as'   => 'front.profile_update_avatar'
+]);
+
 //--------------------FIN RUTAS PARA EL FRONTEND---------------------------//
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
