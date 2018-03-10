@@ -5,8 +5,8 @@
 
 <div class="row">
 	<div class="col-lg-6">
-		{!! Form::open(['route' => 'articles.store', 'method' => 'POST', 'files' => 'TRUE']) !!}
-
+		{!! Form::open(['route' => 'articles.store', 'method' => 'POST', 'files' => 'TRUE', 'id' => 'FormCreate']) !!}
+			{{ csrf_field() }}
 			<div class="form-group">
 				{!! Form::label('category_id','Categoria') !!}
 				{!! Form::select('category_id', $categories, null, ['class' => 'form-control select_category', 'placeholder' => 'Seleccione una categoría']) !!}
@@ -24,7 +24,11 @@
 
 		    <div class="form-group">
 				{!! Form::label('image','Imagen') !!}
-				{!! Form::file('image', null, ['class' => 'form-control', 'multiple']) !!}
+				{!! Form::file('image', null, ['class' => 'form-control', 'multiple', 'id' => 'image']) !!}
+			</div>
+
+			 <div id="previewImage">
+				
 			</div>
 
 			<div class="form-group">
@@ -59,6 +63,36 @@
 	$('.textarea-content').trumbowyg();
 
 
+</script>
+
+{{-- Script para mostrar la imagen al seleccionar el archivo --}}
+
+<script>
+	function archivo(evt) {
+		  var files = evt.target.files; // FileList object
+
+		  // Obtenemos la imagen del campo "file".
+		  for (var i = 0, f; f = files[i]; i++) {
+		    //Solo admitimos imágenes.
+		    if (!f.type.match('image.*')) {
+		    	continue;
+		    }
+
+		    var reader = new FileReader();
+
+		    reader.onload = (function(theFile) {
+		    	return function(e) {
+		          // Insertamos la imagen
+		          document.getElementById("previewImage").innerHTML = ['<img src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+		          console.log()
+		      };
+		  })(f);
+
+		  reader.readAsDataURL(f);
+		}
+		}
+
+	document.getElementById('image').addEventListener('change', archivo, false);
 </script>
 
 @endsection
