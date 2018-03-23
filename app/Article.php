@@ -24,7 +24,7 @@ class Article extends Model
     }
 
     protected $table = "articles";
-    protected $fillable = ['title','content','user_id','category_id','slug'];
+    protected $fillable = ['title','content','user_id','category_id','slug', 'status_public'];
 
     public function category(){
     return $this->belongsTo('App\Category');

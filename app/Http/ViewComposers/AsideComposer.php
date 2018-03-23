@@ -12,7 +12,7 @@ class AsideComposer
 
     public function compose(View $view)
     {
-        $categories = Category::orderBy('name','desc')->get();
+    	$categories = Category::orderBy('name','desc')->get();
         $tags = Tag::orderBy('name','desc')->get();
         $view->with('categs', $categories)
              ->with('tags',$tags);

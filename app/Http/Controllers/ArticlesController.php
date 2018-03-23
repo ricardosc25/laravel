@@ -55,6 +55,13 @@ class ArticlesController extends Controller
     {
         $article = new Article($request->all());
         $article->user_id = \Auth::user()->id;
+        if ($request->input('status_public') == 'true') {
+            $article->status_public = 1;
+        }
+        else{
+            $article->status_public = 0;
+        }
+        
         $article->save();
 
         $article->tags()->sync($request->tags);
@@ -115,6 +122,12 @@ class ArticlesController extends Controller
     {
         $art = Article::find($id);
         $art->fill($request->all());
+        if ($request->input('status_public') == 'true') {
+            $article->status_public = 1;
+        }
+        else{
+            $article->status_public = 0;
+        }
         $art->save();
         $art->tags()->sync($request->tags);
 

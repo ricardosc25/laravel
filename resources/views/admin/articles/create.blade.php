@@ -6,7 +6,7 @@
 <div class="row">
 	<div class="col-lg-6">
 		{!! Form::open(['route' => 'articles.store', 'method' => 'POST', 'files' => 'TRUE', 'id' => 'FormCreate']) !!}
-			{{ csrf_field() }}
+			{!! csrf_field() !!}
 			<div class="form-group">
 				{!! Form::label('category_id','Categoria') !!}
 				{!! Form::select('category_id', $categories, null, ['class' => 'form-control select_category', 'placeholder' => 'Seleccione una categoría']) !!}
@@ -35,6 +35,12 @@
 				{!! Form::label('tags','Tag') !!}
 				{!! Form::select('tags[]', $tags, null, ['class' => 'form-control select_tags', 'multiple']) !!}
 			</div>
+
+			<div class="form-check">
+			    {!! Form::label('status_public', 'Publicar') !!}
+			    {!! Form::checkbox('status_public', 'true', false, ['class' => 'form-check-label']) !!}
+			    
+  			</div>
 
 			<div class="form-group">
 				{!! Form::submit('Guardar', ['class' => 'btn btn-primary']) !!}

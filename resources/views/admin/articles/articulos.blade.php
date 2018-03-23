@@ -10,6 +10,7 @@
             <th>Categoria</th>
             <th>Autor</th>
             <th>Accion</th>
+            <th>Estado</th>
     </thead>
     <tbody>
 
@@ -23,6 +24,7 @@
                     <a href="{{ route('admin.articles.destroy', $art->id)}}"><span class="glyphicon glyphicon-trash"></span></a>
                     <a href="{{ route('articles.edit', $art->id) }}"><span class="glyphicon glyphicon-pencil"></span></a>
                  </td>
+                 <td>{{ $art->status_public }}</td>
 	    	</tr>
 	    	@endforeach
 

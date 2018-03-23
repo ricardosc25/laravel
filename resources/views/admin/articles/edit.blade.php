@@ -30,7 +30,18 @@
 				{!! Form::select('tags[]', $tags, null, ['class' => 'form-control select_tags', 'multiple']) !!}
 			</div>
 
+			<div class="form-group" >
+				{{ Form::label('status_public', 'Publicar') }}
+				{!! Form::checkbox('status_public', 'true', $article->status_public) !!}
+					@if($article->status_public == 1)
+						<span class="label label-success">Publicado</span>
+					@else
+						<span class="label label-warning">No publicado</span>
+					@endif
+			</div>
+
 			<div class="form-group">
+
 				{!! Form::submit('Actualizar', ['class' => 'btn btn-primary']) !!}
 			</div>
 
