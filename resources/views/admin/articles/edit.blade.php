@@ -32,7 +32,7 @@
 
 			<div class="form-group" >
 				{{ Form::label('status_public', 'Publicar') }}
-				{!! Form::checkbox('status_public', 'true', $article->status_public) !!}
+				{!! Form::checkbox('status_public', 1, $article->status_public, ['class' => 'field']) !!}
 					@if($article->status_public == 1)
 						<span class="label label-success">Publicado</span>
 					@else
