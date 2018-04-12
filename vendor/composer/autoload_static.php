@@ -365,6 +365,7 @@ class ComposerStaticInita0ba222e4191b5a41642f05ebe6da5b0
     public static $classMap = array (
         'AddAvatarToUsersTable' => __DIR__ . '/../..' . '/database/migrations/2018_02_26_221054_add_avatar_to_users_table.php',
         'AddColumSlugToArticles' => __DIR__ . '/../..' . '/database/migrations/2017_10_24_022432_add_colum_slug_to_articles.php',
+        'AddColumnRutaImagesTableArticles' => __DIR__ . '/../..' . '/database/migrations/2018_04_12_144822_add_column_ruta_images_table_articles.php',
         'AggColumnaPublicarTablaArticles' => __DIR__ . '/../..' . '/database/migrations/2018_03_13_210800_Agg_Columna_Publicar_Tabla_Articles.php',
         'App\\Article' => __DIR__ . '/../..' . '/app/Article.php',
         'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',

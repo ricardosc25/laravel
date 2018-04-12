@@ -15,7 +15,8 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('article_id')->unsigned();
+            $table->integer('article_id')->unsigned(); 
+            //UNSIGNED: Ejemplo, el SMALLINT te ira en -32768 a 32767. Pero si lo pones con unsigned, sera desde 0 a 65535 (porque no toma el valor negativo).
             $table->timestamps();
 
             //Creamos la relacion

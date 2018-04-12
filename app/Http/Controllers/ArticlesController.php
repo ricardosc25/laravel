@@ -10,6 +10,7 @@ use App\Category;
 use App\Tag;
 use App\Article;
 use App\Image;
+use Image as Imagen; //Libreria
 
 class ArticlesController extends Controller
 {
@@ -51,7 +52,7 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticlesRequest $request)
+    public function store(Request $request)
     {
         $article = new Article($request->all());
         $article->user_id = \Auth::user()->id;
@@ -65,17 +66,47 @@ class ArticlesController extends Controller
         $article->save();
 
         $article->tags()->sync($request->tags);
-        // sync: rellena la tabla pibote article_tag
+        //sync: rellena la tabla pibote article_tag
 
-        if ($request->file('image')) 
+        if ($request->hasFile('image')) 
         {
-            $file = $request->file('image');
-            $name = 'laravel_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = public_path() . '\Image\Articles/'; /*ruta para almacenar la imagen*/
-            $file->move($path, $name); /*Movemos la imagen a la ruta path y como segundo parametro le pasamos el nombre que tendrá la imagen.*/
+            $anio = date("Y");
+            $mes = date("m");
+            $dia = date("d");
+            $directory = "image/articles/$anio/$mes/$dia"; //Directorio donde se va a almacenar la imagen
+            $exists = file_exists($directory); //Preguntamos si el directorio ya existe
+            if(!$exists){//Si no existe el directorio
+                mkdir($directory, 0777, true);//Creamos el directorio
+            }
+            //Despues de creado el directorio, seguimos.
+            $image = $request->file('image'); //Obtenemos la imagen
+            $name = time() . '.' . $image->getClientOriginalExtension(); //Nombre que le vamos a asignar a la imagen
+            $path = $directory.'/'.$name; //ruta para almacenar la imagen
+            $img = Imagen::make($image);
+            $altura = $img->height();
+            $ancho = $img->width();
+            if ($ancho >= 400 && $altura >= 230) {
+                    $img->fit(400, 230, function($constraint){
+                    $constraint->upsize();
+                    });
+            }
+            elseif ($ancho < 400) {
+                $img->resize(400, 230);
+                
+            }
+
+            $img->save($path);
+                            
+
+            //ANTERIOR
+            // $file = $request->file('image');
+            // $name = 'laravel_' . time() . '.' . $file->getClientOriginalExtension();
+            // $path = public_path() . '\Image\Articles/'; /*ruta para almacenar la imagen*/
+            // $file->move($path, $name); /*Movemos la imagen a la ruta path y como segundo parametro le pasamos el nombre que tendrá la imagen.*/
+            //ANTERIOR
 
             $image = new Image();
-            $image->name = $name;
+            $image->name = $path;
             $image->article()->associate($article);
             $image->save();
         }
