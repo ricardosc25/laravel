@@ -20,10 +20,16 @@
 				{!! Form::textarea('content', null, ['class' => 'form-control textarea-content']) !!}
 			</div>
 
-		    <div class="form-group">
-				{!! Form::label('image','Imagen') !!}
-				{!! Form::file('image', null, ['class' => 'form-control', 'multiple']) !!}
+			<div class="form-group">
+					{!! Form::label('image','Imagen') !!}
+					{!! Form::file('image', null, ['class' => 'form-control', 'multiple']) !!}
 			</div>
+
+
+			@if($imagen)			
+				<label>Imagen actual</label>
+				<img src="{{ asset($imagen->name) }}">				    
+			@endif
 
 			<div class="form-group">
 				{!! Form::label('tags','Tag') !!}
@@ -32,7 +38,7 @@
 
 			<div class="form-group" >
 				{{ Form::label('status_public', 'Publicar') }}
-				{!! Form::checkbox('status_public', 1, $article->status_public, ['class' => 'field']) !!}
+				{!! Form::checkbox('status_public', null, $article->status_public, ['class' => 'field']) !!}
 					@if($article->status_public == 1)
 						<span class="label label-success">Publicado</span>
 					@else

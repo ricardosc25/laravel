@@ -68,18 +68,27 @@ class ArticlesController extends Controller
         $article->tags()->sync($request->tags);
         //sync: rellena la tabla pibote article_tag
 
-        if ($request->hasFile('image')) 
+        if ($request->file('image')) 
         {   
-
-            //Despues de creado el directorio, seguimos.
             $image = $request->file('image'); //Obtenemos la imagen
             $name = time() . '.' . $image->getClientOriginalExtension(); //Nombre que le vamos a asignar a la imagen
             $path = directoryImages().'/'.$name; //ruta para almacenar la imagen
             $img = Imagen::make($image);
             $altura = $img->height();
             $ancho = $img->width();
-            $img->resize(600, 360);
+            if($ancho > 600 && $altura > 360){
+                $img->fit(600, 360, function ($constraint) {
+                $constraint->upsize();
+                });
+            }elseif ($ancho < 600 && $altura > 360) {
+                $img->resizeCanvas(600, 360, 'center', false, 'fff');
+            }
+            elseif ($ancho < 600 && $altura < 360) {
+                $img->resizeCanvas(600, 360, 'center', false, 'fff');
+            }
+            
             $img->save($path);
+            $img->destroy();
                             
             $image = new Image();
             $image->name = $path;
@@ -110,11 +119,15 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   $art = Article::find($id);
+    {   
+
+        $art = Article::find($id);
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags = Tag::orderBy('name', 'ASC')->pluck('name', 'id');
+        $image = Image::where('article_id',$id)->first();
         return view('admin.articles.edit')
              ->with('article', $art)
+             ->with('imagen', $image)
              ->with('categories', $categories)
              ->with('tags', $tags);       
     }
@@ -128,32 +141,38 @@ class ArticlesController extends Controller
     public function update(Request $request, $id)
     {     
 
-        $art = Article::find($id);
-        $art->fill($request->all());
-        if ($request->input('status_public') == 1) {
-            $art->status_public = 1;
-        }
-        else{
-            $art->status_public = 0;
-        }
-        $art->save();
-        $art->tags()->sync($request->tags);
+        // $article = Article::find($id);
+        // $article->fill($request->all());
+        // $article->status_public == $request->status_public;
+        // dd($article);
+        // if ($request->input('status_public') == 1) {
+        //     $article->status_public = 1;
+        // }
+        // else{
+        //     $article->status_public = 0;
+        // }
+        // $article->save();
+        // $article->tags()->sync($request->tags);
+      
 
-        if($request->hasFile('image')) 
+        if($request->image)
         {
-            $file = $request->file('image');
-            $name = 'laravel_' . time() . '.' . $file->getClientOriginalExtension();
-            $path = public_path() . '\Image\Articles/'; /*ruta para almacenar la imagen*/
-            $file->move($path, $name); /*Movemos la imagen a la ruta path y como segundo parametro le pasamos el nombre que tendrá la imagen.*/
-
+            
+            $image = $request->file('image'); //Obtenemos la imagen
+            $name = time() . '.' . $image->getClientOriginalExtension(); //Nombre que le vamos a asignar a la imagen
+            $path = directoryImages().'/'.$name; //ruta para almacenar la imagen
+            dd($path);
+            $img->resize(600, 360);
+            $img->save($path);
+                            
             $image = new Image();
-            $image->name = $name;
+            $image->name = $path;
             $image->article()->associate($article);
             $image->save();
         }
 
-        flash('Actualización exitosa')->success();
-        return redirect()->route('admin.articles.articulos');
+        // flash('Actualización exitosa')->success();
+        // return redirect()->route('admin.articles.articulos');
     }
 
     /**
