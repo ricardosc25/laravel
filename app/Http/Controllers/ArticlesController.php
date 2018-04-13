@@ -25,7 +25,7 @@ class ArticlesController extends Controller
         $image->each(function($image){
             $image->article;
         });
-        $article = Article::orderBy('id', 'DESC')->paginate(5);
+        $article = Article::orderBy('id', 'DESC')->paginate(10);
         return view('admin.articles.index')
               ->with('article', $article)
               ->with('image', $image);
@@ -69,42 +69,18 @@ class ArticlesController extends Controller
         //sync: rellena la tabla pibote article_tag
 
         if ($request->hasFile('image')) 
-        {
-            $anio = date("Y");
-            $mes = date("m");
-            $dia = date("d");
-            $directory = "image/articles/$anio/$mes/$dia"; //Directorio donde se va a almacenar la imagen
-            $exists = file_exists($directory); //Preguntamos si el directorio ya existe
-            if(!$exists){//Si no existe el directorio
-                mkdir($directory, 0777, true);//Creamos el directorio
-            }
+        {   
+
             //Despues de creado el directorio, seguimos.
             $image = $request->file('image'); //Obtenemos la imagen
             $name = time() . '.' . $image->getClientOriginalExtension(); //Nombre que le vamos a asignar a la imagen
-            $path = $directory.'/'.$name; //ruta para almacenar la imagen
+            $path = directoryImages().'/'.$name; //ruta para almacenar la imagen
             $img = Imagen::make($image);
             $altura = $img->height();
             $ancho = $img->width();
-            if ($ancho >= 400 && $altura >= 230) {
-                    $img->fit(400, 230, function($constraint){
-                    $constraint->upsize();
-                    });
-            }
-            elseif ($ancho < 400) {
-                $img->resize(400, 230);
-                
-            }
-
+            $img->resize(600, 360);
             $img->save($path);
                             
-
-            //ANTERIOR
-            // $file = $request->file('image');
-            // $name = 'laravel_' . time() . '.' . $file->getClientOriginalExtension();
-            // $path = public_path() . '\Image\Articles/'; /*ruta para almacenar la imagen*/
-            // $file->move($path, $name); /*Movemos la imagen a la ruta path y como segundo parametro le pasamos el nombre que tendrá la imagen.*/
-            //ANTERIOR
-
             $image = new Image();
             $image->name = $path;
             $image->article()->associate($article);
@@ -150,7 +126,8 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {     
+
         $art = Article::find($id);
         $art->fill($request->all());
         if ($request->input('status_public') == 1) {
@@ -162,7 +139,7 @@ class ArticlesController extends Controller
         $art->save();
         $art->tags()->sync($request->tags);
 
-          if ($request->file('image')) 
+        if($request->hasFile('image')) 
         {
             $file = $request->file('image');
             $name = 'laravel_' . time() . '.' . $file->getClientOriginalExtension();
@@ -197,7 +174,7 @@ class ArticlesController extends Controller
     // Vista de los articulos interno (Admin, Autor y consultor)
     public function articulos()
     {
-        $article = Article::orderBy('id', 'DESC')->paginate(5);
+        $article = Article::orderBy('id', 'DESC')->paginate(20);
         return view('admin.articles.articulos')->with('article', $article);
     }
 }

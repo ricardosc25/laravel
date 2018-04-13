@@ -8,7 +8,7 @@
 		<form enctype="multipart/form-data" action="{{ route('front.profile') }} " method="POST">
 			<label for="avatar">Update profile image</label>
 			<input type="file" name="avatar">
-			<input type="hidden" name="_token" value="{{ csrf_token() }} ">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<input type="submit" class="pull-right btn btn-sm btn-primary">
 		</form>
 	</div>
