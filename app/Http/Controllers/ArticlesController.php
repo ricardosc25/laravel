@@ -141,38 +141,69 @@ class ArticlesController extends Controller
     public function update(Request $request, $id)
     {     
 
-        // $article = Article::find($id);
-        // $article->fill($request->all());
-        // $article->status_public == $request->status_public;
-        // dd($article);
-        // if ($request->input('status_public') == 1) {
-        //     $article->status_public = 1;
-        // }
-        // else{
-        //     $article->status_public = 0;
-        // }
-        // $article->save();
-        // $article->tags()->sync($request->tags);
+        $article = Article::find($id);
+        $article->fill($request->all());
+        if ($request->input('status_public') == 1) {
+            $article->status_public = 1;
+        }
+        else{
+            $article->status_public = 0;
+        }
+        $article->save();
+        $article->tags()->sync($request->tags);
       
 
-        if($request->image)
+        //Validamos si existe una imagen
+        if(!is_null($request->file('image')))
         {
-            
-            $image = $request->file('image'); //Obtenemos la imagen
-            $name = time() . '.' . $image->getClientOriginalExtension(); //Nombre que le vamos a asignar a la imagen
-            $path = directoryImages().'/'.$name; //ruta para almacenar la imagen
-            dd($path);
-            $img->resize(600, 360);
+            //**** ELIMINAMOS LA IMAGEN ANTERIOR ****//
+
+            //Buscamos la ruta de la imagen
+            $imgAnterior = Image::where('article_id',$id)->first();
+            //Guardo la ruta de la imagen
+            $rutaImgAnterior = $imgAnterior->name;
+            //Valido si la imagen existe en la ruta
+            if(file_exists($rutaImgAnterior)){
+                //Eliminamos la imagen
+                $delete = unlink($rutaImgAnterior);
+            }
+
+            //**** FIN DE ELIMINAR IMAGEN ANTERIOR****//
+
+            //Obtenemos la imagen
+            $image = $request->file('image');
+            //Nombre que le vamos a asignar a la imagen
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            //ruta para almacenar la imagen
+            $path = directoryImages().'/'.$name;
+            //Creamos un nuevo recurso de la librería Image
+            $img = Imagen::make($image);
+            //Validamos los tamaños
+            $altura = $img->height();
+            $ancho = $img->width();
+            if($ancho > 600 && $altura > 360){
+                $img->fit(600, 360, function ($constraint) {
+                $constraint->upsize();
+                });
+            }elseif ($ancho < 600 && $altura > 360) {
+                $img->resizeCanvas(600, 360, 'center', false, 'fff');
+            }
+            elseif ($ancho < 600 && $altura < 360) {
+                $img->resizeCanvas(600, 360, 'center', false, 'fff');
+            }
+            //Guardamos la imagen en la ruta
             $img->save($path);
+            //Liberar memoria de la instancia de la librería Image
+            $img->destroy();
                             
-            $image = new Image();
+            $image = Image::where('article_id',$id)->first();
             $image->name = $path;
             $image->article()->associate($article);
             $image->save();
         }
 
-        // flash('Actualización exitosa')->success();
-        // return redirect()->route('admin.articles.articulos');
+        flash('Actualización exitosa')->success();
+        return redirect()->route('admin.articles.articulos');
     }
 
     /**

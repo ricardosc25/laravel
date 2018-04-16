@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
 	<div class="col-lg-6">
-		{!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'PUT']) !!}
+		{!! Form::model($article, ['route' => ['articles.update', $article->id], 'method' => 'PUT', 'enctype' => "multipart/form-data"]) !!}
 
 			<div class="form-group">
 				{!! Form::label('category_id','Categoria') !!}
@@ -38,7 +38,7 @@
 
 			<div class="form-group" >
 				{{ Form::label('status_public', 'Publicar') }}
-				{!! Form::checkbox('status_public', null, $article->status_public, ['class' => 'field']) !!}
+				{!! Form::checkbox('status_public', 1, $article->status_public, ['class' => 'field']) !!}
 					@if($article->status_public == 1)
 						<span class="label label-success">Publicado</span>
 					@else
