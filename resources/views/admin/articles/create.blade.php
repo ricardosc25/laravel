@@ -38,7 +38,7 @@
 
 			<div class="form-check">
 			    {!! Form::label('status_public', 'Publicar') !!}
-			    {!! Form::checkbox('status_public', 'true', false, ['class' => 'form-check-label']) !!}
+			    {!! Form::checkbox('status_public', 1, false, ['class' => 'form-check-label']) !!}
 			    
   			</div>
 

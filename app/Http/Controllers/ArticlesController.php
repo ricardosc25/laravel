@@ -26,6 +26,9 @@ class ArticlesController extends Controller
             $image->article;
         });
         $article = Article::orderBy('id', 'DESC')->paginate(10);
+        $article->each(function($article){
+            $article->images;
+        });
         return view('admin.articles.index')
               ->with('article', $article)
               ->with('image', $image);
@@ -52,11 +55,11 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticlesRequest $request)
     {
         $article = new Article($request->all());
         $article->user_id = \Auth::user()->id;
-        if ($request->input('status_public') == 'true') {
+        if ($request->input('status_public') == 1) {
             $article->status_public = 1;
         }
         else{
@@ -97,7 +100,7 @@ class ArticlesController extends Controller
         }
 
         flash('Se ha creado el articulo de forma exitosa')->success();
-        return redirect()->route('admin.articles.articulos');
+        return redirect()->route('articles.index');
         
     }
 
@@ -203,7 +206,7 @@ class ArticlesController extends Controller
         }
 
         flash('Actualización exitosa')->success();
-        return redirect()->route('admin.articles.articulos');
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -218,13 +221,8 @@ class ArticlesController extends Controller
         $article->delete();
 
         flash('Se ha eliminado un articulo de forma exitosa')->error();
-        return redirect()->route('admin.articles.articulos');
+        return redirect()->route('articles.index');
     }
 
-    // Vista de los articulos interno (Admin, Autor y consultor)
-    public function articulos()
-    {
-        $article = Article::orderBy('id', 'DESC')->paginate(20);
-        return view('admin.articles.articulos')->with('article', $article);
-    }
+
 }

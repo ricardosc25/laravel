@@ -1,77 +1,41 @@
- <nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="{{ asset('Image/Profile/Avatars/1521132035.jpg') }}" width="30" height="30" alt="">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-            <!-- Collapsed Hamburger -->
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                Home
-            </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="app-navbar-collapse">
-            @if(Auth::user())
-            <!-- Left Side Of Navbar -->
-            <ul class="nav navbar-nav">
-                <li><a href="{{ route('admin.articles.articulos') }}">Articulos <span class="sr-only">(current)</span></a></li>
-                @if(Auth::user()->type == 'admin')
-                    <li><a href="{{ route('users.index') }}">Usuarios</a></li>
-                @endif
-                
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{{ route('categories.index') }}">Ver categorías</a></li>
-                    <li><a href="{{ route('categories.create') }}">crear categoría</a></li>
-                </ul>
-            </li>
-            <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tags<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="{{ route('tags.index') }}">Ver tags</a></li>
-                    <li><a href="{{ route('tags.create') }}">Crear tag</a></li>
-                </ul>
-            </li>
-        </ul>
-
-        <!-- Right Side Of Navbar -->
-        <ul class="nav navbar-nav navbar-right">
-            <!-- Authentication Links -->
-            @guest
-            <li><a href="{{ route('login') }}">Login</a></li>
-            <li><a href="{{ route('register') }}">Register</a></li>
-            @else
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style=" position: relative; padding-left: 50px;">
-                    <img src="{{ asset('Image/Profile/Avatars/' . Auth::user()->avatar) }}" style="width: 32px; height: 32px; top:10px; left:10px; position:absolute; border-radius:50%;">
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                </a>
-
-                <ul class="dropdown-menu" role="menu">
-                    <li>
-                        <a href="{{ route('front.profile') }}"><i class="fas fa-user"></i> Profile</a>
-                    </li>
-                    <li>
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"> Logout</i>
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                    </li>
-            </ul>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    @if(Auth::user())
+    <ul class="navbar-nav w-100">
+       <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
-        @endguest
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('articles.index') }}">Articulos <span class="sr-only">(current)</span></a>
+        </li>
+        @if(Auth::user()->type == 'admin')
+        <li><a class="nav-link" href="{{ route('users.index') }}">Usuarios</a></li>
+        @endif
+        <li><a class="nav-link" href="{{ route('categories.index') }}">Categorías</a></li>
+        <li><a class="nav-link" href="{{ route('tags.index') }}">Tags</a></li>
+        <li class="nav-item dropdown ml-auto">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" position: relative; padding-left: 50px;">
+                <img src="{{ asset('Image/Profile/Avatars/' . Auth::user()->avatar) }}" style="width: 32px; height: 32px; top:8px; left:10px; position:absolute; border-radius:50%;">
+              {{ Auth::user()->name }} <span class="caret"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"> <i class="fas fa-user-circle"></i> Profile</a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
+            </div>
+        </li>
     </ul>
-</div>
 @endif
 </div>
 </nav>
+<br>
