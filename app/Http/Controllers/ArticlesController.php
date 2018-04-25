@@ -215,9 +215,9 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-      public function destroy($id)
+      public function destroy(Request $request)
     {
-        $article = Article::find($id);
+        $article = Article::find($request->idArticulo);
         $article->delete();
 
         flash('Se ha eliminado un articulo de forma exitosa')->error();

@@ -10,7 +10,7 @@
     @if(Auth::user())
     <ul class="navbar-nav w-100">
        <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('front.index') }}">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('articles.index') }}">Articulos <span class="sr-only">(current)</span></a>
@@ -26,7 +26,7 @@
               {{ Auth::user()->name }} <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"> <i class="fas fa-user-circle"></i> Profile</a>
+                <a class="dropdown-item" href="{{ route('front.profile_update_avatar') }}"> <i class="fas fa-user-circle"></i> Profile</a>
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i> Logout</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
