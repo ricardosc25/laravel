@@ -22,7 +22,7 @@
         <li><a class="nav-link" href="{{ route('tags.index') }}">Tags</a></li>
         <li class="nav-item dropdown ml-auto">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" position: relative; padding-left: 50px;">
-                <img src="{{ asset('Image/Profile/Avatars/' . Auth::user()->avatar) }}" style="width: 32px; height: 32px; top:8px; left:10px; position:absolute; border-radius:50%;">
+                <img class="img-profile" src="{{ asset('Image/Profile/Avatars/' . Auth::user()->avatar) }}">
               {{ Auth::user()->name }} <span class="caret"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

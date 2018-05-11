@@ -94,9 +94,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $user = User::find($id);
+        $user = User::find($request->idUser);
         $user->delete();
         flash('Se ha eliminado el usuario '.$user->name.' de forma exitosa')->error();
 

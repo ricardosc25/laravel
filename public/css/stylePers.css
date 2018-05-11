@@ -1,0 +1,21 @@
+.img-profile{
+		width: 32px; 
+		height: 32px; 
+		top:8px; 
+		left:10px; 
+		position:absolute; 
+		border-radius:50%;
+	}
+
+.img-profile-user{
+		width: 32px; 
+		height: 32px; 
+		border-radius:50%;
+	}
+
+.form-signin {
+		  width: 100%;
+		  max-width: 330px;
+		  padding: 15px;
+		  margin: 0 auto;
+}

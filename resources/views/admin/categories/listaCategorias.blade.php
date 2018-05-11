@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-md-6">
-          <a href="{{ route('categories.create') }}" class="btn btn-default">Crear categoría</a>
+          <a href="{{ route('categories.create') }}" class="btn btn-outline-dark">Crear categoría</a>
           <table class="table table-striped table-dark">
             <thead>
               <tr>
@@ -19,8 +19,8 @@
                   <th scope="row">{{ $categ->id }}</th>
                   <td>{{ $categ->name }}</td>
                   <td>
-                    <a href="{{ route('admin.categories.destroy', $categ->id)}}"><span class="glyphicon glyphicon-trash"></span></a>
-                    <a href="{{ route('categories.edit', $categ->id) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="{{ route('admin.categories.destroy', $categ->id)}}"><i class="far fa-trash-alt"></i></a>
+                    <a href="{{ route('categories.edit', $categ->id) }}"><i class="fas fa-edit"></i></a>
                  </td>
                 </tr>
               @endforeach
