@@ -16,7 +16,7 @@
             <div class="input-group">            
               {!! form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Buscar tags...', 'aria-describedby' => 'search']) !!}
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Button</button>
+                <button class="btn btn-outline-secondary" type="submit">Buscar</button>
               </div>
            </div>
           
@@ -33,7 +33,7 @@
       <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Name</th>
+          <th scope="col">Nombre</th>
           <th scope="col">Accion</th>
         </tr>
       </thead>
