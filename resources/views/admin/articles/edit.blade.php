@@ -12,7 +12,7 @@
 
 			<div class="form-group">
 				{!! Form::label('title','Titulo') !!}
-				{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Titulo de la nota']) !!}
+				{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Titulo de la nota', 'maxlength' => '100']) !!}
 			</div>
 
 			<div class="form-group">
@@ -72,6 +72,8 @@
 	});
 
 	$('.textarea-content').trumbowyg();
+
+	
 
 </script>
 

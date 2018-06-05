@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Article;
 use App\Category;
+Use App\User;
 use App\Tag;
 use Carbon\Carbon;
 
@@ -20,8 +21,10 @@ class FrontController extends Controller
     		$articles->images;
     	});
 
+
     	return view('front.index')
-    			->with('articles',$articles);
+    			->with('article',$articles);
+
     	
     }
 

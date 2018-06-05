@@ -58,7 +58,6 @@ class ArticlesController extends Controller
      */
     public function store(ArticlesRequest $request)
     {
-        
         $article = new Article($request->all());
         $article->user_id = \Auth::user()->id;
         if ($request->input('status_public') == 1) {
